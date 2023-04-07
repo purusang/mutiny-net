@@ -1,0 +1,3 @@
+[submodule "mutinynet-faucet"]
+	path = mutinynet-faucet
+	url = https://github.com/MutinyWallet/mutinynet-faucet.git
