@@ -31,8 +31,8 @@ services:
     environment:
       ELECTRS_LOG_FILTERS: "INFO"
       ELECTRS_NETWORK: "signet"
-      ELECTRS_DAEMON_RPC_ADDR: "bitcoin:38332"
-      ELECTRS_DAEMON_P2P_ADDR: "bitcoin:38333"
+      ELECTRS_DAEMON_RPC_ADDR: "bitcoind:38332"
+      ELECTRS_DAEMON_P2P_ADDR: "bitcoind:38333"
       ELECTRS_ELECTRUM_RPC_ADDR: "0.0.0.0:50001"
       ELECTRS_SERVER_BANNER: "Mutinynet Electrs"
       ELECTRS_DB_DIR: "/data/db"
@@ -47,7 +47,7 @@ services:
     build:
       context: ./mutinynet-faucet
       args:
-        VITE_HOST: "bitcoin"
+        VITE_HOST: "bitcoind"
         VITE_PORT: "38332"
         VITE_USER: "bitcoin"
         VITE_PASS: $RPCPASSWORD
