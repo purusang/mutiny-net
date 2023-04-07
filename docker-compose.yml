@@ -24,6 +24,22 @@ services:
       - "38332:38332"
       - "38333:38333"
       - "38334:38334"
+  faucet:
+    container_name: "faucet"
+    image: mutinynet-faucet
+    user: "0:1000"
+    restart: always
+    stop_grace_period: 1m
+    volumes:
+      - ~/volumes/faucet:/root/.faucet
+    environment:
+      VITE_HOST: "bitcoin"
+      VITE_PORT: "38332"
+      VITE_USER: "bitcoin"
+      VITE_PASS: $RPCPASSWORD
+      VITE_NETWORK: "signet"
+    ports:
+      - "3000:3000"
   web:
     container_name: "mempool_frontend"
     environment:
