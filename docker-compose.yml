@@ -24,6 +24,24 @@ services:
       - "38332:38332"
       - "38333:38333"
       - "38334:38334"
+  electrs:
+    container_name: "electrs"
+    image: getumbrel/electrs:v0.9.10@sha256:7b64bf93f2137fcd040fc512a302abda17dd1b4cad8181a14fa34c15361f1334
+    restart: always
+    environment:
+      ELECTRS_LOG_FILTERS: "INFO"
+      ELECTRS_NETWORK: "signet"
+      ELECTRS_DAEMON_RPC_ADDR: "bitcoin:38332"
+      ELECTRS_DAEMON_P2P_ADDR: "bitcoin:38333"
+      ELECTRS_ELECTRUM_RPC_ADDR: "0.0.0.0:50001"
+      ELECTRS_SERVER_BANNER: "Mutinynet Electrs"
+      ELECTRS_DB_DIR: "/data/db"
+    volumes:
+      - "~/volumes/.bitcoin:/root/.bitcoin:ro"
+      - "~/volumes/electrs:/data"
+    ports:
+      - "50001:50001"
+      - "50002:50002"
   faucet:
     container_name: "faucet"
     build:
@@ -56,7 +74,10 @@ services:
   api:
     container_name: "mempool_backend"
     environment:
-      MEMPOOL_BACKEND: "none" # TODO add a backend
+      MEMPOOL_BACKEND: "electrum"
+      ELECTRUM_HOST: "electrs"
+      ELECTRUM_PORT: "50001"
+      ELECTRUM_TLS_ENABLED: "false"
       CORE_RPC_HOST: "bitcoind"
       CORE_RPC_PORT: "38332"
       CORE_RPC_USERNAME: "bitcoin"
