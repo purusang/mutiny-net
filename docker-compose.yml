@@ -51,7 +51,7 @@ services:
         VITE_PORT: "38332"
         VITE_USER: "bitcoin"
         VITE_PASS: $RPCPASSWORD
-        VITE_NETWORK: "signet"
+        VITE_NETWORK: "regtest" # wrong intentionally because of bug in a library
     user: "0:1000"
     restart: always
     stop_grace_period: 1m
