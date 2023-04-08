@@ -37,6 +37,7 @@ services:
       - ~/volumes/electrs:/root/.electrs
     ports:
       - "3003:3003"
+      - "50001:50001"
   faucet:
     container_name: "faucet"
     build:
