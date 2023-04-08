@@ -32,7 +32,7 @@ services:
     restart: always
     stop_grace_period: 1m
     environment:
-      FLAGS: '-vvvv --daemon-dir /root/.bitcoin/signet --daemon-rpc-addr bitcoin:38332 --timestamp --blocks-dir /root/.bitcoin/signet/blocks --cookie="bitcoin:$RPCPASSWORD" --db-dir /root/.electrs --network signet --http-addr 0.0.0.0:3003'
+      FLAGS: '-vvvv --daemon-dir /root/.bitcoin/signet --daemon-rpc-addr bitcoind:38332 --timestamp --blocks-dir /root/.bitcoin/signet/blocks --cookie=bitcoin:$RPCPASSWORD --db-dir /root/.electrs --network signet --http-addr 0.0.0.0:3003'
     volumes:
       - ~/volumes/electrs:/root/.electrs
     ports:
