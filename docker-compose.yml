@@ -32,7 +32,7 @@ services:
     restart: always
     stop_grace_period: 1m
     environment:
-      FLAGS: '-vvvv --signet-magic cb2ddfa5 --jsonrpc-import --daemon-dir /root/.bitcoin/signet --daemon-rpc-addr bitcoind:38332 --timestamp --blocks-dir /root/.bitcoin/signet/blocks --cookie=bitcoin:$RPCPASSWORD --db-dir /root/.electrs --network signet --http-addr 0.0.0.0:3003'
+      FLAGS: '-vvvv --signet-magic cb2ddfa5 --jsonrpc-import --daemon-dir /root/.bitcoin/signet --daemon-rpc-addr bitcoind:38332 --timestamp --blocks-dir /root/.bitcoin/signet/blocks --cookie=bitcoin:$RPCPASSWORD --db-dir /root/.electrs --network signet --electrum-rpc-addr 0.0.0.0:50001 --http-addr 0.0.0.0:3003'
     volumes:
       - ~/volumes/electrs:/root/.electrs
     ports:
@@ -70,6 +70,9 @@ services:
     container_name: "mempool_backend"
     environment:
       MEMPOOL_BACKEND: "esplora"
+      ELECTRUM_HOST: "electrs"
+      ELECTRUM_PORT: "50001"
+      ELECTRUM_TLS_ENABLED: "false"
       ESPLORA_REST_API_URL: "http://electrs:3003"
       CORE_RPC_HOST: "bitcoind"
       CORE_RPC_PORT: "38332"
