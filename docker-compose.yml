@@ -70,6 +70,7 @@ services:
   api:
     container_name: "mempool_backend"
     environment:
+      MEMPOOL_NETWORK: "signet"
       MEMPOOL_BACKEND: "esplora"
       ELECTRUM_HOST: "electrs"
       ELECTRUM_PORT: "50001"
