@@ -94,6 +94,7 @@ services:
     command: "./wait-for-it.sh db:3306 --timeout=720 --strict -- ./start.sh"
     ports:
       - "8889:8889"
+      - "8999:8999"
     volumes:
       - ~/volumes/mempool:/backend/cache
   db:
