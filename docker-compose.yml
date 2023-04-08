@@ -24,6 +24,19 @@ services:
       - "38332:38332"
       - "38333:38333"
       - "38334:38334"
+  electrs:
+    container_name: "electrs"
+    build:
+      context: ./electrs
+    user: "0:1000"
+    restart: always
+    stop_grace_period: 1m
+    environment:
+      FLAGS: '-vvvv --daemon-dir /root/.bitcoin/signet --daemon-rpc-addr bitcoin:38332 --timestamp --blocks-dir /root/.bitcoin/signet/blocks --cookie="bitcoin:$RPCPASSWORD" --db-dir /root/.electrs --network signet --http-addr 0.0.0.0:3003'
+    volumes:
+      - ~/volumes/electrs:/root/.electrs
+    ports:
+      - "3003:3003"
   faucet:
     container_name: "faucet"
     build:
@@ -56,10 +69,8 @@ services:
   api:
     container_name: "mempool_backend"
     environment:
-      MEMPOOL_BACKEND: "none"
-#      ELECTRUM_HOST: "electrs"
-#      ELECTRUM_PORT: "50001"
-#      ELECTRUM_TLS_ENABLED: "false"
+      MEMPOOL_BACKEND: "esplora"
+      ESPLORA_REST_API_URL: "http://electrs:3003"
       CORE_RPC_HOST: "bitcoind"
       CORE_RPC_PORT: "38332"
       CORE_RPC_USERNAME: "bitcoin"

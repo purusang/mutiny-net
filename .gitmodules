@@ -1,3 +1,7 @@
 [submodule "mutinynet-faucet"]
 	path = mutinynet-faucet
 	url = https://github.com/MutinyWallet/mutinynet-faucet.git
+[submodule "electrs"]
+	path = electrs
+	url = https://github.com/MutinyWallet/electrs.git
+	branch = new-index
