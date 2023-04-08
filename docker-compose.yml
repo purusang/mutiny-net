@@ -3,7 +3,7 @@ version: "3.7"
 services:
   bitcoind:
     container_name: "bitcoind"
-    image: bitcoin-signet
+    build: .
     user: "0:1000"
     restart: always
     stop_grace_period: 1m
