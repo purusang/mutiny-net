@@ -24,6 +24,37 @@ services:
       - "38332:38332"
       - "38333:38333"
       - "38334:38334"
+  lnd:
+    container_name: "lnd"
+    image: lightninglabs/lnd:v0.16.0-beta
+    user: "0:1000"
+    restart: always
+    stop_grace_period: 10m
+    environment:
+      RPCPASSWORD: $RPCPASSWORD
+    command: [
+      "--bitcoin.active",
+      "--bitcoin.signet",
+      "--bitcoin.node=bitcoind",
+      "--maxpendingchannels=10",
+      "--bitcoind.rpchost=bitcoind:38332",
+      "--bitcoind.rpcuser=bitcoin",
+      "--bitcoind.rpcpass=$RPCPASSWORD",
+      "--bitcoind.zmqpubrawblock=tcp://bitcoind:28332",
+      "--bitcoind.zmqpubrawtx=tcp://bitcoind:28333",
+      "--alias=lnd",
+      "--externalip=mutinynet.com",
+      "--protocol.option-scid-alias",
+      "--protocol.wumbo-channels",
+      "--accept-keysend",
+      "--noseedbackup",
+      "--coin-selection-strategy=random",
+    ]
+    volumes:
+      - ~/volumes/.lnd:/root/.lnd
+    ports:
+      - "9735:9735"
+      - "10009:10009"
   electrs:
     container_name: "electrs"
     build:
