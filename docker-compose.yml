@@ -56,6 +56,9 @@ services:
       - "9735:9735"
       - "10009:10009"
   rgs_server:
+    container_name: "rgs-server"
+    restart: always
+    stop_grace_period: 1m
     build:
       context: ./rapid-gossip-sync-server
       dockerfile: ./docker/Dockerfile.rgs
@@ -78,9 +81,13 @@ services:
     command: 'cargo run --release'
 
   postgres:
+    container_name: "postgres"
     image: 'postgres:12-alpine'
+    restart: always
+    stop_grace_period: 1m
+    user: "0:1000"
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - ~/volumes/postgres:/var/lib/postgresql/data
     environment:
