@@ -55,6 +55,38 @@ services:
     ports:
       - "9735:9735"
       - "10009:10009"
+  rgs_server:
+    build:
+      context: ./rapid-gossip-sync-server
+      dockerfile: ./docker/Dockerfile.rgs
+    volumes:
+      - ~/volumes/rgs:/usr/src/app:cached
+    links:
+      - postgres
+      - bitcoind
+    depends_on:
+      - postgres
+    environment:
+      RAPID_GOSSIP_SYNC_SERVER_DB_HOST: postgres
+      RAPID_GOSSIP_SYNC_SERVER_DB_USER: lightning-rgs
+      RAPID_GOSSIP_SYNC_SERVER_DB_PASSWORD: docker
+      RAPID_GOSSIP_SYNC_SERVER_DB_NAME: ln_graph_sync
+      RAPID_GOSSIP_SYNC_SERVER_NETWORK: signet
+      BITCOIN_REST_DOMAIN: bitcoind
+      BITCOIN_REST_PORT: 38332
+      LN_PEERS: 02ccae6cf587b54d934f512ef1941e8a17e243f4c81628b0bc2df307295de28870@lnd:9735 # lnd's node id
+    command: 'cargo run --release'
+
+  postgres:
+    image: 'postgres:12-alpine'
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/volumes/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: lightning-rgs
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: ln_graph_sync
   electrs:
     container_name: "electrs"
     build:

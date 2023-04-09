@@ -27,6 +27,7 @@ if [[ "$EXTERNAL_IP" != "" ]]; then
 fi
 
 echo "[signet]
+rest=1
 daemon=1
 listen=1
 server=1
