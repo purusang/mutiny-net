@@ -7,4 +7,5 @@
 	branch = new-index
 [submodule "rapid-gossip-sync-server"]
 	path = rapid-gossip-sync-server
-	url = https://github.com/lightningdevkit/rapid-gossip-sync-server.git
+	url = https://github.com/MutinyWallet/rapid-gossip-sync-server.git
+	branch = 5-mins
