@@ -78,7 +78,7 @@ services:
       BITCOIN_REST_DOMAIN: bitcoind
       BITCOIN_REST_PORT: 38332
       LN_PEERS: 02ccae6cf587b54d934f512ef1941e8a17e243f4c81628b0bc2df307295de28870@lnd:9735 # lnd's node id
-    command: 'cargo run --release'
+    entrypoint: ["rapid-gossip-sync-server"]
 
   postgres:
     container_name: "postgres"
