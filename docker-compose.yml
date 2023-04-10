@@ -42,7 +42,7 @@ services:
       "--bitcoind.rpcpass=$RPCPASSWORD",
       "--bitcoind.zmqpubrawblock=tcp://bitcoind:28332",
       "--bitcoind.zmqpubrawtx=tcp://bitcoind:28333",
-      "--alias=lnd",
+      "--alias=mutiny-net-lnd",
       "--externalip=mutinynet.com",
       "--protocol.option-scid-alias",
       "--protocol.wumbo-channels",
