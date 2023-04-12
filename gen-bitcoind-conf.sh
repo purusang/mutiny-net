@@ -32,6 +32,7 @@ daemon=1
 listen=1
 server=1
 discover=1
+signetblocktime=$BLOCKPRODUCTIONDELAY
 signetchallenge=$SIGNETCHALLENGE
 zmqpubrawblock=$ZMQPUBRAWBLOCK
 zmqpubrawtx=$ZMQPUBRAWTX
