@@ -77,7 +77,7 @@ services:
       RAPID_GOSSIP_SYNC_SERVER_NETWORK: signet
       BITCOIN_REST_DOMAIN: bitcoind
       BITCOIN_REST_PORT: 38332
-      LN_PEERS: 02ccae6cf587b54d934f512ef1941e8a17e243f4c81628b0bc2df307295de28870@lnd:9735 # lnd's node id
+      LN_PEERS: 02465ed5be53d04fde66c9418ff14a5f2267723810176c9212b722e542dc1afb1b@lnd:9735 # lnd's node id
     entrypoint: ["rapid-gossip-sync-server"]
 
   postgres:
