@@ -26,7 +26,7 @@ services:
       - "38334:38334"
   lnd:
     container_name: "lnd"
-    image: lightninglabs/lnd:v0.16.0-beta
+    image: lightninglabs/lnd:v0.16.2-beta
     user: "0:1000"
     restart: always
     stop_grace_period: 10m
