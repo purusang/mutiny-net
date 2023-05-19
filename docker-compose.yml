@@ -47,6 +47,7 @@ services:
       "--protocol.option-scid-alias",
       "--protocol.wumbo-channels",
       "--accept-keysend",
+      "--minchansize=25000",
       "--noseedbackup",
       "--coin-selection-strategy=random",
     ]
