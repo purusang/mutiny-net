@@ -79,7 +79,7 @@ services:
       BITCOIN_REST_DOMAIN: bitcoind
       BITCOIN_REST_PORT: 38332
       LN_PEERS: 02465ed5be53d04fde66c9418ff14a5f2267723810176c9212b722e542dc1afb1b@lnd:9735 # lnd's node id
-    entrypoint: ["rapid-gossip-sync-server"]
+    entrypoint: [ "rapid-gossip-sync-server" ]
 
   postgres:
     container_name: "postgres"
@@ -133,15 +133,15 @@ services:
     container_name: "faucet_backend"
     build:
       context: ./mutinynet-faucet-rs
-      args:
-        BITCOIN_RPC_HOST_AND_PORT: "bitcoind:38332"
-        BITCOIN_RPC_USER: "bitcoin"
-        BITCOIN_RPC_PASSWORD: $RPCPASSWORD
-        NETWORK: "signet"
-        GRPC_PORT: "10009"
-        GRPC_HOST: "lnd"
-        TLS_CERT_PATH: "/root/.lnd/tls.cert"
-        ADMIN_MACAROON_PATH: "/root/.lnd/data/chain/bitcoin/signet/admin.macaroon"
+    environment:
+      BITCOIN_RPC_HOST_AND_PORT: "bitcoind:38332"
+      BITCOIN_RPC_USER: "bitcoin"
+      BITCOIN_RPC_PASSWORD: $RPCPASSWORD
+      NETWORK: "signet"
+      GRPC_PORT: "10009"
+      GRPC_HOST: "lnd"
+      TLS_CERT_PATH: "/root/.lnd/tls.cert"
+      ADMIN_MACAROON_PATH: "/root/.lnd/data/chain/bitcoin/signet/admin.macaroon"
     user: "0:1000"
     restart: always
     stop_grace_period: 1m
