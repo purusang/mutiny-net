@@ -9,3 +9,6 @@
 	path = rapid-gossip-sync-server
 	url = https://github.com/MutinyWallet/rapid-gossip-sync-server.git
 	branch = 5-mins
+[submodule "mutinynet-faucet-rs"]
+	path = mutinynet-faucet-rs
+	url = https://github.com/MutinyWallet/mutinynet-faucet-rs.git
