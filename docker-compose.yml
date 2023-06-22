@@ -37,6 +37,7 @@ services:
       "--bitcoin.signet",
       "--bitcoin.node=bitcoind",
       "--maxpendingchannels=10",
+      "--rpclisten=0.0.0.0:10009",
       "--bitcoind.rpchost=bitcoind:38332",
       "--bitcoind.rpcuser=bitcoin",
       "--bitcoind.rpcpass=$RPCPASSWORD",
@@ -146,7 +147,6 @@ services:
     restart: always
     stop_grace_period: 1m
     volumes:
-      - ~/volumes/faucet-rs:/root/.faucet-rs
       - ~/volumes/.lnd:/root/.lnd:ro
     ports:
       - "3001:3001"
