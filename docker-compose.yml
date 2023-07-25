@@ -184,6 +184,11 @@ services:
       DATABASE_USERNAME: "mempool"
       DATABASE_PASSWORD: "mempool"
       STATISTICS_ENABLED: "false"
+      LIGHTNING_ENABLED: "true"
+      LIGHTNING_BACKEND: "lnd"
+      LND_TLS_CERT_PATH: "/root/.lnd/tls.cert"
+      LND_MACAROON_PATH: "/root/.lnd/data/chain/bitcoin/signet/admin.macaroon"
+      LND_REST_API_URL: "https://lnd:8081"
     image: mempool/backend:latest
     user: "0:1000"
     restart: always
@@ -194,6 +199,7 @@ services:
       - "8999:8999"
     volumes:
       - ~/volumes/mempool:/backend/cache
+      - ~/volumes/.lnd:/root/.lnd:ro
   db:
     container_name: "mempool_db"
     environment:
