@@ -159,6 +159,7 @@ services:
     environment:
       FRONTEND_HTTP_PORT: "8080"
       BACKEND_MAINNET_HTTP_HOST: "api"
+      LIGHTNING: "true"
     image: mempool/frontend:latest
     user: "0:1000"
     restart: always
