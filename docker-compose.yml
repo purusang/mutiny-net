@@ -46,6 +46,7 @@ services:
       "--bitcoind.zmqpubrawtx=tcp://bitcoind:28333",
       "--alias=mutiny-net-lnd",
       "--externalip=mutinynet.com",
+      "--externalip=gfg7fwat27mnsmlog7wbgi6a53f2b5rj56bwokcfk45bacnb4z5kt5ad.onion",
       "--tlsextradomain=mutinynet.com",
       "--tlsextradomain=lnd",
       "--protocol.option-scid-alias",
