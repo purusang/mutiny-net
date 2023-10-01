@@ -137,8 +137,7 @@ services:
       - "3000:3000"
   faucet_backend:
     container_name: "faucet_backend"
-    build:
-      context: ./mutinynet-faucet-rs
+    image: ghcr.io/mutinywallet/mutinynet-faucet-rs:master
     environment:
       RUST_LOG: "info"
       BITCOIN_RPC_HOST_AND_PORT: "bitcoind:38332"
