@@ -144,6 +144,7 @@ services:
       BITCOIN_RPC_USER: "bitcoin"
       BITCOIN_RPC_PASSWORD: $RPCPASSWORD
       NETWORK: "signet"
+      HOST: "https://faucet.mutinynet.com"
       GRPC_PORT: "10009"
       GRPC_HOST: "lnd"
       TLS_CERT_PATH: "/root/.lnd/tls.cert"
