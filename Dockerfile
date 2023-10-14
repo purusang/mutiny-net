@@ -1,6 +1,6 @@
 FROM debian:buster-slim as builder
 
-ARG BITCOIN_VERSION="d8434da3c14e"
+ARG BITCOIN_VERSION="f036909dbe28"
 ARG TRIPLET=${TRIPLET:-"x86_64-linux-gnu"}
 
 RUN  apt-get update && \
@@ -8,7 +8,7 @@ RUN  apt-get update && \
 WORKDIR /tmp
 
 # install bitcoin binaries
-RUN BITCOIN_URL="https://github.com/benthecarman/bitcoin/releases/download/custom-signet-blocktime/bitcoin-${BITCOIN_VERSION}-${TRIPLET}.tar.gz" && \
+RUN BITCOIN_URL="https://github.com/benthecarman/bitcoin/releases/download/mutinynet-covtools/bitcoin-${BITCOIN_VERSION}-${TRIPLET}.tar.gz" && \
      BITCOIN_FILE="bitcoin-${BITCOIN_VERSION}-${TRIPLET}.tar.gz" && \
      wget -qO "${BITCOIN_FILE}" "${BITCOIN_URL}" && \
      mkdir -p bin && \
