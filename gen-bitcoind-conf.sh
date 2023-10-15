@@ -32,6 +32,7 @@ daemon=1
 listen=1
 server=1
 acceptnonstdtxn=1
+v2transport=1
 discover=1
 signetblocktime=$BLOCKPRODUCTIONDELAY
 signetchallenge=$SIGNETCHALLENGE
