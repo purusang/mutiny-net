@@ -1,10 +1,18 @@
 version: "3.7"
 
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50m"
+    max-file: "3"
+
 services:
   bitcoind:
     container_name: "bitcoind"
     build: .
     user: "0:1000"
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     volumes:
@@ -28,6 +36,7 @@ services:
     container_name: "lnd"
     image: lightninglabs/lnd:v0.16.4-beta
     user: "0:1000"
+    logging: *default-logging
     restart: always
     stop_grace_period: 10m
     environment:
@@ -64,6 +73,7 @@ services:
       - "8081:8081"
   rgs_server:
     container_name: "rgs-server"
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     build:
@@ -90,6 +100,7 @@ services:
   postgres:
     container_name: "postgres"
     image: 'postgres:12-alpine'
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     user: "0:1000"
@@ -106,6 +117,7 @@ services:
     build:
       context: ./electrs
     user: "0:1000"
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     environment:
@@ -129,6 +141,7 @@ services:
         VITE_TLS_CERT: $LND_TLS_CERT
         VITE_ADMIN_MACAROON: $LND_ADMIN_MACAROON
     user: "0:1000"
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     volumes:
@@ -150,6 +163,7 @@ services:
       TLS_CERT_PATH: "/root/.lnd/tls.cert"
       ADMIN_MACAROON_PATH: "/root/.lnd/data/chain/bitcoin/signet/admin.macaroon"
     user: "0:1000"
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     volumes:
@@ -164,6 +178,7 @@ services:
       LIGHTNING: "true"
     image: mempool/frontend:latest
     user: "0:1000"
+    logging: *default-logging
     restart: always
     stop_grace_period: 1m
     command: "./wait-for db:3306 --timeout=720 -- nginx -g 'daemon off;'"
@@ -195,6 +210,7 @@ services:
       LND_MACAROON_PATH: "/root/.lnd/data/chain/bitcoin/signet/admin.macaroon"
       LND_REST_API_URL: "https://lnd:8081"
     image: mempool/backend:latest
+    logging: *default-logging
     user: "0:1000"
     restart: always
     stop_grace_period: 1m
@@ -213,6 +229,7 @@ services:
       MYSQL_PASSWORD: "mempool"
       MYSQL_ROOT_PASSWORD: "admin"
     image: mariadb:10.5.8
+    logging: *default-logging
     user: "0:1000"
     restart: always
     stop_grace_period: 1m
