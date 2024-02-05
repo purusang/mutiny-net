@@ -159,6 +159,7 @@ services:
       BITCOIN_RPC_HOST_AND_PORT: "bitcoind:38332"
       BITCOIN_RPC_USER: "bitcoin"
       BITCOIN_RPC_PASSWORD: $RPCPASSWORD
+      NSEC: $NSEC
       NETWORK: "signet"
       HOST: "https://faucet.mutinynet.com"
       GRPC_PORT: "10009"
