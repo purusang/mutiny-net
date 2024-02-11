@@ -130,6 +130,27 @@ services:
     ports:
       - "3003:3003"
       - "50001:50001"
+  nutshell:
+    container_name: "nutshell"
+    image: 'cashubtc/nutshell:0.14.1'
+    logging: *default-logging
+    restart: always
+    stop_grace_period: 1m
+    user: "0:1000"
+    ports:
+      - "3338:3338"
+    environment:
+      MINT_LIGHTNING_BACKEND: "LndRestWallet"
+      MINT_LISTEN_HOST: "0.0.0.0"
+      MINT_LISTEN_PORT: "3338"
+      MINT_PRIVATE_KEY: $MINT_PRIVATE_KEY
+      MINT_LND_REST_ENDPOINT: "https://lnd:8081"
+      MINT_LND_REST_CERT: "/root/.lnd/tls.cert"
+      MINT_LND_REST_MACAROON: "/root/.lnd/data/chain/bitcoin/signet/admin.macaroon"
+    command: [ "poetry", "run", "mint" ]
+    volumes:
+      - ~/volumes/.lnd:/root/.lnd:ro
+      - ~/volumes/nutshell:/root/.cashu
   faucet:
     container_name: "faucet"
     build:
