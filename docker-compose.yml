@@ -153,17 +153,7 @@ services:
       - ~/volumes/nutshell:/root/.cashu
   faucet:
     container_name: "faucet"
-    build:
-      context: ./mutinynet-faucet
-      args:
-        VITE_HOST: "bitcoind"
-        VITE_PORT: "38332"
-        VITE_USER: "bitcoin"
-        VITE_PASS: $RPCPASSWORD
-        VITE_NETWORK: "regtest" # wrong intentionally because of bug in a library
-        VITE_LND_GRPC: "lnd:10009"
-        VITE_TLS_CERT: $LND_TLS_CERT
-        VITE_ADMIN_MACAROON: $LND_ADMIN_MACAROON
+    image: ghcr.io/mutinywallet/mutinynet-faucet:master
     user: "0:1000"
     logging: *default-logging
     restart: always
