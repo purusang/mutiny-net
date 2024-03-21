@@ -34,7 +34,7 @@ services:
       - "38334:38334"
   lnd:
     container_name: "lnd"
-    image: lightninglabs/lnd:v0.17.3-beta
+    image: lightninglabs/lnd:v0.17.4-beta
     user: "0:1000"
     logging: *default-logging
     restart: always
@@ -55,7 +55,7 @@ services:
       "--bitcoind.zmqpubrawtx=tcp://bitcoind:28333",
       "--db.bolt.auto-compact",
       "--db.prune-revocation",
-      "--alias=mutiny-net-lnd",
+      "--alias=Faucet LND",
       "--externalip=mutinynet.com",
       "--externalip=gfg7fwat27mnsmlog7wbgi6a53f2b5rj56bwokcfk45bacnb4z5kt5ad.onion",
       "--tlsextradomain=mutinynet.com",
