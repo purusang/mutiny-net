@@ -65,6 +65,7 @@ services:
       "--accept-keysend",
       "--minchansize=25000",
       "--noseedbackup",
+      "--gc-canceled-invoices-on-startup",
       "--coin-selection-strategy=random",
     ]
     volumes:
