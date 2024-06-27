@@ -189,6 +189,8 @@ services:
   web:
     container_name: "mempool_frontend"
     environment:
+      MAINNET_ENABLED: "false"
+      ROOT_NETWORK: "signet"
       FRONTEND_HTTP_PORT: "8080"
       BACKEND_MAINNET_HTTP_HOST: "api"
       LIGHTNING: "true"
