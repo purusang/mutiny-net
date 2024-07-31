@@ -77,6 +77,19 @@ services:
       - "9735:9735"
       - "10009:10009"
       - "8081:8081"
+  lndk:
+    build: ./lndk
+    restart: unless-stopped
+    user: "0:1000"
+    logging: *default-logging
+    depends_on:
+      - lnd
+    command: --address=https://lnd:10009 --cert-path=/root/.lnd/tls.cert --macaroon-path=/root/.lnd/data/chain/bitcoin/signet/admin.macaroon --log-level=trace --grpc-host=0.0.0.0
+    environment:
+      - RUST_BACKTRACE=1
+    volumes:
+      - ~/volumes/lndk:/root/.lndk
+      - ~/volumes/.lnd:/root/.lnd:ro
   rgs_server:
     container_name: "rgs-server"
     logging: *default-logging
